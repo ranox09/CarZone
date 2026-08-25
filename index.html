@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html> 
+<head>
+    <title>CarZone | Explore Amazing Cars</title>
+
+    <meta name="description" content="CarZone is a website whre you can explore amazing cars, and automotive information.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="images/car-icon.png">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        * {
+            box-sizing:border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: #222;
+        }
+        header {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+            gap: 25px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 45px;
+        }
+        header p {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        main{
+            padding: 20px;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+        main h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+        .cars {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+        }
+        .car img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+            display:block;
+        }
+        .car {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px gray;
+            width: 300px;
+            text-align: center;
+        }
+        .car h3 {
+            margin: 15px 0 10px;
+            font-size: 22px;
+        }
+        .car p {
+            color: #555;
+            line-height: 1.5;
+        }
+        button {
+            background-color: #111;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #444;
+            transform: scale(1.05);
+        }
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        @media (max-width: 600px) {
+
+            header {
+                padding: 25px 15px;
+            }
+
+            nav {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            header h1 {
+                font-size: 30px;
+            }
+
+            header p {
+                font-size: 16px;
+                max-width: 350px;
+                margin: 10px auto;
+                line-height:1.5;
+            }
+
+            main h2 {
+                font-size: 26px;
+            }
+
+            .car {
+                width: 100%;
+            }
+
+            .car img {
+                height: 160px;
+            }
+
+            .footer-links a {
+                display: inline-block;
+                margin: 5px 8px;
+            }
+
+            header img {
+                height: 220px;
+            }
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        nav a:hover {
+            color: #aaa;
+            transform: translateY(-2px);
+        }
+        .car {
+            transition: 0.3s;
+        }
+        .car:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 20px gray;
+        }
+        .car img {
+            transition: 0.3s;
+        }
+
+        .car:hover img {
+            transform: scale(1.03);
+        }
+        #about {
+            background-color: white;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px gray;
+        }
+
+        #about h2 {
+            font-size: 30px;
+        }
+
+        #about p {
+            line-height: 1.6;
+            color: #555;
+        }
+        .car p[id] {
+            margin-top: 15px;
+            color: #333;
+            font-size: 14px;
+            font-weight: bold;
+            animation: fadeIn 0.9s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        section {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            text-align: center;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px gray;
+        }
+
+        section h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        section p {
+            color: #555;
+            line-height: 1.6;
+        }
+        #contact button {
+            margin-top: 15px;
+        }
+        section .cars {
+            margin-top: 30px;
+        }
+        .intro {
+            background-color: #111;
+            color: white;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .intro h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        .intro p {
+            font-size: 17px;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .intro {
+            transition: 0.3s;
+        }
+        .intro:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px gray;
+        }
+        .top-button {
+            display:block;
+            width: fit-content;
+            margin: 30px auto;
+            padding: 10px 20px;
+            background-color: #111;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        .top-button:hover {
+            background-color: #444;
+            transform: translateY(-2px);
+        }
+        .footer-links {
+            margin-top: 10px;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+        .footer-links a:hover {
+            color: #aaa;
+        }
+         #contact button {
+            margin-top: 15px;
+        }
+         #contact a {
+            text-decoration: none;
+        }
+    
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .categories button {
+            background-color: white;
+            color: #111;
+            border: 2px solid #111;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .categories button:hover {
+            background-color: #111;
+            color: white;
+        }
+        .no-cars {
+            display:none;
+            text-align: center;
+            color: #555;
+            font-weight:bold;
+            margin: 30px;
+        }
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .search-box input {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 18px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #111;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #111;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            font-size: 12px;
+            font-width: bold;
+            margin-top: 15px;
+        }
+        .latest {
+            border-top: 2px solid #ddd;
+            padding-top: 40px;
+            box-shadow: 0 4px 12px #bbb;
+        }
+        .why-carzone {
+            background-color: #111;
+            color: white;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .why-carzone h2 {
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+
+        .reasons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .reasons div {
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+            border-radius:10px;
+            transition: 0.3s;
+        }
+
+        .reasons h3 {
+            margin-bottom: 10px;
+        }
+
+        .reasons p {
+            color: #ccc;
+            line-height: 1.5;
+        }
+        
+        .reason div:hover {
+            background-color: #222;
+            transform: translateY(-5px);
+        }
+        header img {
+            width: 100%;
+            max-width: 900px;
+            height:350px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-top: 25px;
+            filter: brightness(75%);
+            box-shadow: 0 8px 25px gray;
+        }
+        .hero-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: white;
+            color:#111;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: 0.5s;
+        }
+        .hero-button:hover {
+            background-color: #ddd;
+            transform:translateY(-2px);
+        }
+    </style>
+    
+</head>
+
+<body id="home">
+
+    <header>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#cars">Cars</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <h1>CARZONE</h1>
+        <p>Explore supercars, sports cars, and legendary JDM machines</p>
+        <img src="Hero-car.jpg" alt="BMW M4 Competition">
+        <a href="#cars" class="hero-button">Explore Cars</a>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>Welcome to CarZone</h2>
+            <p>
+                Discover supercars,sports cars, ans legendary performance machines.
+                Explore thier design, specificaion, and performance. Whether you are a car enthusiast or just looking for inspiration, CarZone is your ultimate destination for all things automotive.
+            </p>
+        </section>
+
+        <h2 id="cars">Featured Cars</h2>
+
+        <div class="search-box">
+            <input type="text" id="carSearch" placeholder="Search for a car...." oninput="searchCars()">
+            <button onclick="clearSearch()">Clear</button>
+        </div>
+
+        <div class="categories">
+            <button onclick="filterCars('all')">All</button>
+            <button onclick="filterCars('supercars')">Supercars</button>
+            <button onclick="filterCars('sports')">Sports Cars</button>
+            <button onclick="filterCars('JDM')">JDM</button>
+        </div>
+        <p id="noCars" class="no-cars">No cars found in this category.</p>
+
+        <div class="cars">
+
+            <div class="car" data-category="supercars">
+                <img src="Lamborgini.jpg.jpg" alt="Lamborghini Aventador">
+                <span class="badge">Featured</span>
+                <h3>Lamborghini Aventador</h3>
+                <p>Powerful V12 supercar built for speed and performance.</p>
+                <button onclick="showCar('Lamborghini Aventador')">View Details</button>
+                <p id="LamborghiniInfo"></p>
+            </div>
+
+            <div class="car" data-category="JDM">
+                <img src="Nissan GT-R.jpg..avif" alt="Nissan GT-R">
+                <span class="badge">Featured</span>
+                <h3>Nissan GT-R</h3>
+                <p>A Legendary Japanese performance car known for its power and speed.</p>
+                <button onclick="showCar('Nissan GT-R')">View Details</button>
+                <p id="NissanGT-RInfo"></p>
+            </div>
+
+            <div class="car" data-category="sports">
+                 <img src="Porsche 911.jpg" alt="Porsche 911">
+                <span class="badge">Featured</span>
+                <h3>Porsche 911</h3>
+                <p>An iconic sports car combining performance and everyday usability.</p>
+                <button onclick="showCar('Porsche 911')">View Details</button>
+                <p id="PorscheInfo"></p>
+            </div>
+
+        </div>
+       <section class="latest">
+        <h2>Latest Cars</h2>
+        <p>Discover some of the latest and most exciting cars.</p>
+
+            <div class="cars">
+
+                <div class="car" data-category="supercars">
+                    <img src="ferrari.webp" alt="Ferrari">
+                    <h3>Ferrari 296 GTB</h3>
+                    <p>A powerful Italian sports car with a hybrid V6 engine.</p>
+                    <button onclick="showFerrari()">View Details</button>
+                    <p id="ferrariInfo"></p>
+                </div>
+
+                <div class="car" data-category="supercars">
+                    <img src="mclearn.webp" alt="McLaren">
+                    <h3>McLaren 750S</h3>
+                    <p>A lightweight supercar designed for extreme performance.</p>
+                    <button onclick="showMcLaren()">View Details</button>
+                    <p id="mclarenInfo"></p>
+                </div>
+
+                <div class="car" data-category="JDM">
+                    <img src="toyota.avif" alt="Toyota Supra">
+                    <h3>Toyota GR Supra</h3>
+                    <p>A modern Japanese sports car built for driving enthusiasts.</p>
+                    <button onclick="showToyota()">View Details</button>
+                    <p id="toyotaInfo"></p>
+                </div>
+                <section class="why-carzone">
+                    <h2>Why CarZone?</h2>
+
+                    <div class="reasons">
+                        <div>
+                            <h3>🚗 Amazing Cars</h3>
+                            <p>Explore supercars,sports cars, and legendary JDM cars.</p>
+                        </div>
+
+                        <div>
+                            <h3>⚡ Performance</h3>
+                            <p>Learn about engine power,performance, and specifications.</p>
+                        </div>
+
+                        <div>
+                            <h3>🔥Car Culture </h3>
+                            <p>Discover some of thr cars that make automotive culture exciting.</p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>want to learn more about our cars? get in touch with CarZone.</p>
+            <a href="mailto:raihanaswat009@gmail.com">
+                <button>Contact Us</button>
+            </a>
+        </section>
+    </main>
+
+    <section id="about">
+        <h2>About CarZone</h2>
+        <p>CarZone is a website for people who love cars, performance, and automotive culture.</p>
+    </section>
+
+    <a href="#home" class="top-button">Back to Top</a>
+
+    <footer>
+        <p>© 2026 CarZone. All rights reserved.</p>
+
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#cars">Cars</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </footer>
+
+    <script>
+    function showCar(carName) {
+        if (carName === "Lamborghini Aventador") {
+            document.getElementById("LamborghiniInfo").innerHTML =
+                "V12 engine • 6.5L • 769 hp • Top speed around 350 km/h";
+        } else if (carName === "Nissan GT-R") {
+            document.getElementById("NissanGT-RInfo").innerHTML =
+                "Twin-turbo V6 • 3.8L • 565 hp • Legendary Japanese performance car";
+        } else if (carName === "Porsche 911") {
+            document.getElementById("PorscheInfo").innerHTML =
+                "Twin-turbo flat-six • 3.0L • Sports car built for performance";
+        }
+    }
+    
+    function showFerrari() {
+            document.getElementById("ferrariInfo").innerHTML =
+                "V6 hybrid • 3.0L • 819 hp • Italian performance car";
+        }
+
+        function showMcLaren() {
+            document.getElementById("mclarenInfo").innerHTML =
+                "Twin-turbo V8 • 4.0L • 740 hp • Lightweight supercar";
+        }
+
+        function showToyota() {
+            document.getElementById("toyotaInfo").innerHTML =
+                "Turbocharged inline-6 • 3.0L • 382 hp • Japanese sports car";
+        }
+       let selectedCategory = "all";
+
+    function updateCars() {
+        const search = document.getElementById("carSearch").value.toLowerCase();
+        const cars = document.querySelectorAll(".car");
+        const noCars = document.getElementById("noCars");
+
+        let visibleCars = 0;
+
+        cars.forEach(function(car) {
+            const name = car.querySelector("h3").textContent.toLowerCase();
+            const category = car.dataset.category;
+
+            const matchesSearch = name.includes(search);
+            const matchesCategory =
+                selectedCategory === "all" || category === selectedCategory;
+
+            if (matchesSearch && matchesCategory) {
+                car.style.display = "block";
+                visibleCars++;
+            } else {
+                car.style.display = "none";
+            }
+        });
+
+        noCars.style.display = visibleCars === 0 ? "block" : "none";
+    }
+
+    function filterCars(category) {
+        selectedCategory = category;
+        updateCars();
+    }
+
+    function searchCars() {
+        updateCars();
+    }
+    function clearSearch() {
+        document.getElementById("carSearch").value = "";
+        updateCars();
+    }
+    </script>
+
+</body>
+
+</html>
